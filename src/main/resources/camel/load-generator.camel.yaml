@@ -25,5 +25,5 @@
             description: Submit transaction record
             uri: kafka:transactions
             parameters:
-              brokers: console-kafka-kafka-bootstrap.account.svc.cluster.local:9092
+              brokers: console-kafka-kafka-bootstrap.account.svc.cluster.local:9094
               clientId: load-generator-client
