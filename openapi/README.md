@@ -2,7 +2,7 @@ Basic example of using CAMEL REST DSL with an OpenAPI Schema for a contract-firs
 
 The path, URL and specification is abstrated and separated from the implementation
 
-The path is defined in the OpenAPI document: [path](https://github.com/masauve/camel-account-pipeline/blob/290ffa217c73426bf8de5089ce6f3a0853ea5360/openapi/open-api.v1.schema.yaml#L10)
+The path is defined in the OpenAPI document: [code example](https://github.com/masauve/camel-account-pipeline/blob/290ffa217c73426bf8de5089ce6f3a0853ea5360/openapi/open-api.v1.schema.yaml#L10)
 
 the implementation is linked to the specification by operationId:
 <ul>
@@ -11,7 +11,7 @@ the implementation is linked to the specification by operationId:
 Specification: [operationId](https://github.com/masauve/camel-account-pipeline/blob/290ffa217c73426bf8de5089ce6f3a0853ea5360/openapi/open-api.v1.schema.yaml#L20)
 </li>
 <li>
-Implementation: [direct:](https://github.com/masauve/camel-account-pipeline/blob/59200433bad15189fc53aa8b7c3084c8f737897d/openapi/restopenapi-endpoints.camel.yaml#L36)
+Implementation: [caeml direct: route](https://github.com/masauve/camel-account-pipeline/blob/59200433bad15189fc53aa8b7c3084c8f737897d/openapi/restopenapi-endpoints.camel.yaml#L36)
 </li>
 </ul>
 
