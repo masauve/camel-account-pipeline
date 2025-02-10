@@ -1,0 +1,21 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  generateName: account-pipeline-
+  namespace: account-pipeline
+  labels:
+    tekton.dev/pipeline: account-pipeline
+spec:
+  params:
+    - name: tag
+      value: v1
+  pipelineRef:
+    name: account-pipeline
+  taskRunTemplate:
+    serviceAccountName: pipeline
+  timeouts:
+    pipeline: 1h0m0s
+  workspaces:
+    - name: myworkspace
+      persistentVolumeClaim:
+        claimName: workspace-pvc

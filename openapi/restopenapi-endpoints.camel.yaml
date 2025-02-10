@@ -1,0 +1,59 @@
+- on-exception:
+    steps:
+      - transform:
+          constant: a planned and normal exception
+      - to: log:info
+    exception:
+      - java.lang.Exception
+    handled:
+      constant: "true"
+
+- route:
+    id: route-2535
+    from:
+      description: An endpoint to demo camel capabilities
+      uri: direct:post-messages
+      steps:
+        - choice:
+            otherwise:
+              steps:
+                - setBody:
+                    id: setBody-1094
+                    expression:
+                      simple:
+                        expression: ${headers.message}
+                - to: log:info
+            when:
+              - steps:
+                  - throw-exception:
+                      exception-type: java.lang.Exception
+                      message: Planned exception
+                simple: ${header.message} == 'exception'
+- route:
+    id: route-1526
+    from:
+      description: An endpoint to retrieve the last 10 transactions
+      uri: direct:get-transactions
+      steps:
+        - to:
+            id: to-1127
+            description: Retrieve the last n records
+            uri: sql:SELECT * FROM transactions ORDER BY timestamp DESC LIMIT
+              :#${headerAs(limit, int)};
+            parameters:
+              dataSource: "#PostgresqlDataSource"
+        - marshal:
+            id: marshal-2107
+            description: Convert to JSON
+            json:
+              prettyPrint: true
+              useList: true
+- beans:
+    - name: PostgresqlDataSource
+      properties:
+        databaseName: postgres
+        password: postgres
+        portNumber: "5432"
+        serverName: localhost
+        user: postgres
+      type: org.postgresql.ds.PGSimpleDataSource
